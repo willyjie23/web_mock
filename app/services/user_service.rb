@@ -1,13 +1,15 @@
 class UserService
-  def initialize(user)
-    @user = user
+  def initialize(email)
+    @email = email
   end
 
   def user_profile
-    HTTParty.get('www.test.com/profile', query: { user: @user })
+    HTTParty.get('https://demo.com/profile', query: { user: @email })
+    # return
+    { status: 200, parsed_resp: { name: 'willy', age: 18 } }
   end
 
   def add_new_user
-    resp = HTTParty.get('www.test.com/new', body: { user: @user })
+    HTTParty.post('https://demo.com/new_user', body: { user: @user })
   end
 end
